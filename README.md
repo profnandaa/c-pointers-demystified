@@ -1,6 +1,7 @@
 # C/C++ Pointers Demystified
 
 **Outline:**
+- Pointers Explained
 - Declaring pointers
 - Dereferencing pointers
 - Null pointers
@@ -23,7 +24,7 @@
     - References
     - RAII - _resource acquisition is initialization_
 
-## Pointers Explaines
+## Pointers Explained
 
 **Pointers** are variables that store the address of another variable.
     - Allow us to _indirectly_ access variables (i.e. we can talk about its address rather than its _value_)
