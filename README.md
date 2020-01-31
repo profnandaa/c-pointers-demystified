@@ -41,7 +41,7 @@
 ## Null Pointers
 
 - Any pointer set to `0` is called a _null pointer_, since there's no memory location `0`, it is an invalid pointer.
-- Derefencing such a pointer leads to a runtime error. One should check whether the pointer is null before dereferencing it.
+- Dereferencing such a pointer leads to a runtime error. One should check whether the pointer is null before dereferencing it.
 
 ```c
 int *myFunc()
@@ -64,7 +64,8 @@ int *myFunc()
 - The function returns a pointer to the allocated memory, or `NULL` if the request fails.
 
 ## Memory Leak
-"leak" -> failing to release a resource in a timely manner
+- _Leak_ - failing to release a resource in a timely manner.
+- Memory leak occurs when programmers create a memory in heap and forget to delete it.
 
 **Rodney's Challenge:**
 
