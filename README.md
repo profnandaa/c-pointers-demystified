@@ -1,4 +1,4 @@
-# C/C++ Pointers Dimistified
+# C/C++ Pointers Demystified
 
 **Outline:**
 - Declaring pointers
