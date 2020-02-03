@@ -63,9 +63,13 @@ int *px = &x;
     ```c
     int x = 30;
     int *px = &x;
-    *px = 40; // changes x 
-    printf("%p -> %d\n", px, *px); // print memory address of where px is pointing at (px) and the value in the address (*px)
-    // also note that the pointer also is stored somewhere in memory and we can get it's location by &px, e.g.
+    *px = 40; // changes x
+    // print memory address of where px is pointing 
+    // at (px) and the value in the address (*px)
+    printf("%p -> %d\n", px, *px); 
+    // also note that the pointer also is stored 
+    // somewhere in memory and we can get it's location 
+    // by &px, e.g.
     printf("%p\n", &px);
     // so
     printf("%p stores -> %p (px), which stores -> %d (x)\n", &px, px, *px);
