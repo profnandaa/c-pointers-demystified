@@ -7,7 +7,6 @@
 - Null pointers
 - Pointers and Arrays
     - General
-        - how do you tell you are at the end of the array?
     - Character Pointers
     - Incrementing pointers
 - Pointer to pointer (...xN)
@@ -24,6 +23,9 @@
     - References
     - RAII - _resource acquisition is initialization_
 
+> **ℹ Note** <br/>
+> All the code sample used below can be found in [`main.c`](code-sample/main.c).
+
 ## Pointers Explained
 
 **Pointers** are variables that store the address of another variable.
@@ -37,25 +39,70 @@
 - Manipulate complex data structures efficiently, even if their data is scattered in deferent memory locations
 - Use polymorphism - calling functions on data without knowing exactly what kind of data it is. (_needs example!_)
 
+## Declaring Pointers
+
+Simply `<type> *<var_name>;`, e.g.
+
+```c
+int *ptr;
+```
+The pointer can then be initialized to a memory address for a variable, which is found by using `&`, e.g.
+
+```c
+int x = 30;
+int *px = &x;
+```
+
+> ℹ **Note** <br/>
+> My own preference and the prevalent practice is to put the `*` just before the name of the variable as opposed to putting it after the type, as some do. The later is also misleading when you have a list of variables in one line, e.g. `int* ptr, x, y` vs. `int *ptr, x, y`.
+
+## Dereferencing Pointers
+
+- To dereference a pointer is to get the value of what the pointer is pointing to.
+- We use `*<pointer_pointer_var_name>`, for example:
+    ```c
+    int x = 30;
+    int *px = &x;
+    *px = 40; // changes x 
+    printf("%p -> %d\n", px, *px); // print memory address of where px is pointing at (px) and the value in the address (*px)
+    // also note that the pointer also is stored somewhere in memory and we can get it's location by &px, e.g.
+    printf("%p\n", &px);
+    // so
+    printf("%p stores -> %p (px), which stores -> %d (x)\n", &px, px, *px);
+    ```
 
 ## Null Pointers
 
 - Any pointer set to `0` is called a _null pointer_, since there's no memory location `0`, it is an invalid pointer.
 - Dereferencing such a pointer leads to a runtime error. One should check whether the pointer is null before dereferencing it.
 
-```c
-int *myFunc()
-{
-    int x = 30;
-    return &x;
-}
-```
-- `x` is deallocated when `myFunc` exits, so the pointer that the function returns is invalid. (For instance GCC will give a warning and won't compile)
+    ```c
+    int *myFunc()
+    {
+        int x = 30;
+        return &x;
+    }
+    ```
+- `x` is deallocated when `myFunc` exits, so the pointer that the function returns is invalid. (For instance GCC will give a warning and won't compile).
 
 
 ## Pointers and Arrays
 
 - An array is a list of values arranged sequentially in memory.
+
+## Pointer to Pointer
+TBD
+
+## Pointers and Functions
+
+### passing by reference
+TBD
+
+### returning pointers
+TBD
+
+### pointer to functions
+TBD
 
 ## `malloc`, `calloc` and `free`
 
@@ -63,7 +110,9 @@ int *myFunc()
 - Defined in `stdlib.h`
 - The function returns a pointer to the allocated memory, or `NULL` if the request fails.
 
-## Memory Leak
+TBD
+
+## Memory Leaks
 - _Leak_ - failing to release a resource in a timely manner.
 - Memory leak occurs when programmers create a memory in heap and forget to delete it.
 
