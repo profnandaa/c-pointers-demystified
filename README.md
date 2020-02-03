@@ -1,27 +1,27 @@
 # C/C++ Pointers Demystified
 
 **Outline:**
-- Pointers Explained
-- Declaring pointers
-- Dereferencing pointers
-- Null pointers
-- Pointers and Arrays
+- [Pointers Explained](#pointers-explained)
+- [Declaring pointers](#declaring-pointers)
+- [Dereferencing pointers](#dereferencing-pointers)
+- [Null pointers](#null-pointers)
+- [Pointers and Arrays](#pointers-and-arrays)
     - General
     - Character Pointers
     - Incrementing pointers
-- Pointer to pointer (...xN)
-- Pointers and Functions
+- [Pointer to pointer, and on ...](#pointer-to-pointer)
+- [Pointers and Functions](#pointers-and-functions)
     - passing by reference
     - returning pointers
     - pointer to functions
-- `malloc`, `calloc` and `free`
-- Memory Leaks
-- C++ Pointers - _*wont' covers this for the session!_
+- [`malloc`, `calloc` and `free`](#malloc-calloc-and-free)
+- [Memory Leaks](#memory-leaks)
+- C++ Pointers
+    - References
+    - RAII - _resource acquisition is initialization_
     - `unique_ptr`
     - `shared_ptr`
     - `make_shared`
-    - References
-    - RAII - _resource acquisition is initialization_
 
 > **ℹ Note** <br/>
 > All the code sample used below can be found in [`main.c`](code-sample/main.c).
@@ -119,6 +119,10 @@ TBD
 ## Memory Leaks
 - _Leak_ - failing to release a resource in a timely manner.
 - Memory leak occurs when programmers create a memory in heap and forget to delete it.
+
+## C++ Pointers
+
+TBD
 
 **Rodney's Challenge:**
 
