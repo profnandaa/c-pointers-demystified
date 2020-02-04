@@ -68,7 +68,7 @@ int *px = &x;
     // at (px) and the value in the address (*px)
     printf("%p -> %d\n", px, *px); 
     // also note that the pointer also is stored 
-    // somewhere in memory and we can get it's location 
+    // somewhere in memory and we can get its location 
     // by &px, e.g.
     printf("%p\n", &px);
     // so
@@ -81,18 +81,49 @@ int *px = &x;
 - Dereferencing such a pointer leads to a runtime error. One should check whether the pointer is null before dereferencing it.
 
     ```c
-    int *myFunc()
-    {
-        int x = 30;
-        return &x;
-    }
+    int *py = 0; // or int *py = NULL;
+    printf("%d\n", *py); // seg-fault!
     ```
-- `x` is deallocated when `myFunc` exits, so the pointer that the function returns is invalid. (For instance GCC will give a warning and won't compile).
 
 
 ## Pointers and Arrays
 
 - An array is a list of values arranged sequentially in memory.
+- The variable name of the array is usually _a special kind of pointer_, it can decay into a pointer; as we will see below:
+
+    ```c
+    int arr[] = { 1, 2, 3 }; // `arr` decays into int* (int pointer)
+    ```
+- Therefore, `arr` in the example above is equivalent to an `int*`. `arr` is a pointer pointing to the beginning of the array.
+- To get the first element of the array, we will use `*arr`.
+- To get the second element of the array, we use `*(arr + 1)`
+- Therefore to get the _nth_ element of the array we will use `*(arr + n - 1)`.
+
+    ```c
+    int arr[] = { 1, 2, 3 };
+    printf("%d, %d, %d\n", *arr, *(arr + 1), *(arr + 2));
+    ```
+- Let's look at an example for summing up numbers in an array:
+    ```c
+    int sumArray(int *arr, int sz)
+    {
+        int sum = 0;
+        for (int i = 0; i < sz; ++i)
+        {
+            sum += *(arr + i); // or sum += arr[i]
+        }
+        return sum;
+    }
+    ```
+    - `sumArray` takes in a pointer to an array and the size of that array.
+    - However, there's not way of telling (AFAIK) that that pointer truly points to an array, it could as well just be an ordinary pointer to an int. For instance of if we gave `x` (from our example in the beginning) to this function, it will compile correctly and it may even run without a seg-fault!
+    ```c
+    printf("fake sum -> %d\n", sumArray(px, 3));
+    ```
+    - This is the same reason why strings (array of chars) have a sentinel value `\0` at the end that signifies the end of the array (aka, _the null terminator_).
+
+    > **ℹ Note** <br/>
+    > In the next section, we will look at pointer-to-pointer. It is worth noting here that `&arr` in our example above will be an `int**` (pointer to pointer, or address of a pointer `arr`), since `arr` is `int*`.
 
 ## Pointer to Pointer
 TBD
