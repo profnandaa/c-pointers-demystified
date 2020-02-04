@@ -84,7 +84,11 @@ int *px = &x;
     int *py = 0; // or int *py = NULL;
     printf("%d\n", *py); // seg-fault!
     ```
-
+- You may ask, what's the point for _null pointers_? Null pointers are very important for initializing pointers which will point to proper memory addresses later on, but they are not yet determined. If we declared `int *pz;` without initializing it, the compiler (GCC in my case), will point `pz` to a random memory address ("allocate").
+    ```c
+    int *pz;
+    printf("%d\n", *pz);
+    ```
 
 ## Pointers and Arrays
 
@@ -117,9 +121,13 @@ int *px = &x;
     ```
     - `sumArray` takes in a pointer to an array and the size of that array.
     - However, there's not way of telling (AFAIK) that that pointer truly points to an array, it could as well just be an ordinary pointer to an int. For instance of if we gave `x` (from our example in the beginning) to this function, it will compile correctly and it may even run without a seg-fault!
-    ```c
-    printf("fake sum -> %d\n", sumArray(px, 3));
-    ```
+        ```c
+        printf("fake sum -> %d\n", sumArray(px, 3));
+        // if you thought that's enough, try this!
+        printf("fake sum -> %d\n", sumArray(px, 300));
+        // 300 contiguous memory addresses
+        // from px are summed up
+        ```
     - This is the same reason why strings (array of chars) have a sentinel value `\0` at the end that signifies the end of the array (aka, _the null terminator_).
 
     > **ℹ Note** <br/>

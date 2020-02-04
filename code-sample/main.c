@@ -38,6 +38,8 @@ int main()
     // int *py = 0;
     // int *pn = NULL;
     // printf("%p -> %d\n", py, *py); // causes seg-fault!
+    int *pz;
+    printf("random *pz -> %d\n", *pz);
 
     // => Pointers and Arrays
     int arr[] = { 1, 2, 3 };
@@ -50,6 +52,7 @@ int main()
     // pointer to array
     // AFAIK (hit me up if you know one)
     printf("fake sum -> %d\n", sumArray(px, 3));
+    printf("fake sum -> %d\n", sumArray(px, 300));
 
     return 0;
 }
