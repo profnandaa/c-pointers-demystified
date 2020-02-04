@@ -54,7 +54,7 @@ int *px = &x;
 ```
 
 > ℹ **Note** <br/>
-> My own preference and the prevalent practice is to put the `*` just before the name of the variable as opposed to putting it after the type, as some do. The later is also misleading when you have a list of variables in one line, e.g. <br/>`int* ptr, x, y` vs. `int *ptr, x, y`. <br/>(`x` and `y` are just integers but the former may make it look like all are pointers!)
+> My own preference and the prevalent practice is to put the `*` just before the name of the variable as opposed to putting it after the type, as some do. The later is also misleading when you have a list of variables in one line, e.g. <br/>`int *ptr, x, y` vs. `int* ptr, x, y`. <br/>(`x` and `y` are just integers but the later may make it look like all are pointers!)
 
 ## Dereferencing Pointers
 
