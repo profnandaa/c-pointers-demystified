@@ -9,7 +9,7 @@
     - General
     - Character Pointers
     - Incrementing pointers
-- [Pointer to pointer, and on ...](#pointer-to-pointer)
+- [Pointer to Pointer](#pointer-to-pointer)
 - [Pointers and Functions](#pointers-and-functions)
     - passing by reference
     - returning pointers
@@ -146,28 +146,70 @@ p++;            // now p is pointing at the 2nd element
 printf("p -> %d\n", *p);
 printf("p -> %d\n", *(++p)); // pointer now pointing to the 3rd
 ```
-
-### Passing by Value vs. by Reference
-
-TBD
-
+This should be done strictly for _guaranteed_ contiguous memory addresses, i.e. arrays, and you should know where the end is (where to stop).
 
 ### Character Pointers
 
-TBD
+In C, we create a _string_ by using an array of characters (loosely). A pointer pointing to this array is therefore a character pointer.
+
+> _It will be insane to just have one pointer pointing to one char, what's the point?_
+
+Now, how do we tell we have reached the end of our "string"? We use a null terminator `\0`. That is when it is a proper string, else, it's just an array of characters.
+
+Let's look at an example:
+```cpp
+char s[] = { 'h', 'e', 'l', 'l', 'o', '\0' };
+char *ps = s;
+printf("%s, length = %ld\n", ps, strlen(ps));
+// a shorter way to initalize this:
+char *ps2 = "another hello"; // using double quotes to denote string
+printf("%s, length = %ld\n", ps2, strlen(ps2));
+```
 
 ## Pointer to Pointer
-TBD
+
+We can have a pointer pointing to a pointer, and even another pointer pointing to the/that pointer (`pointer -> pointer -> pointer`).
+
+Let's look at a simple example:
+```cpp
+int y = 10;
+int *py = &y;
+int **ppy = &py;
+int ***pppy = &ppy; // we can go on and on
+
+printf("%p -> %p -> %p -> %d\n", pppy, ppy, py, y);
+// we can deference any to get to our int value
+// notice the symetry in the *
+// as per the declaration
+printf("%d, %d, %d\n", ***pppy, **ppy, *py);
+// likewise you can modify through indirection
+***pppy = 40;
+printf("%d\n", y);
+```
+
+Likewise, you can have a pointer that points to the array pointer, eg:
+```cpp
+int arr2[] = { 2, 5, 6, 8 };
+int *p2 = arr2;
+int **ppArr = &p2;
+printf("1st element in arr: %d\n", **ppArr);
+printf("2nd element in arr: %d\n", *(*ppArr + 1)); // notice the brackets
+```
 
 ## Pointers and Functions
 
-### passing by reference
+### Passing by Value vs. by Reference
+
+A pointer is a _value_ too, only that that value is a reference. Let that sink.
+
+Therefore you can pass a pointer to a function _by value_ or _by reference_. Reference here will be a pointer to that pointer.
+
+TBC
+
+### Returning Pointers
 TBD
 
-### returning pointers
-TBD
-
-### pointer to functions
+### Pointer to Functions
 TBD
 
 ## `malloc`, `calloc` and `free`
