@@ -195,6 +195,7 @@ int **ppArr = &p2;
 printf("1st element in arr: %d\n", **ppArr);
 printf("2nd element in arr: %d\n", *(*ppArr + 1)); // notice the brackets
 ```
+> _We will see why this is important when we look at the the next section on passing by value and by reference._
 
 ## Pointers and Functions
 
