@@ -84,7 +84,7 @@ int *px = &x;
     int *py = 0; // or int *py = NULL;
     printf("%d\n", *py); // seg-fault!
     ```
-- You may ask, what's the point for _null pointers_? Null pointers are very important for initializing pointers which will point to proper memory addresses later on, but they are not yet determined. If we declared `int *pz;` without initializing it, the compiler (GCC in my case), will point `pz` to a random memory address ("allocate").
+- You may ask, what's the point for _null pointers_? Null pointers are very important for initializing pointers which will point to proper memory addresses later on, but they are not yet determined. If we declared `int *pz;` without initializing it, the compiler (GCC in my case), will point `pz` to a random memory address ("allocate"). However, this is not guaranteed, will _seg-fault_ too, sometimes.
     ```c
     int *pz;
     printf("%d\n", *pz);
@@ -132,6 +132,29 @@ int *px = &x;
 
     > **ℹ Note** <br/>
     > In the next section, we will look at pointer-to-pointer. It is worth noting here that `&arr` in our example above will be an `int**` (pointer to pointer, or address of a pointer `arr`), since `arr` is `int*`.
+
+### Incrementing Pointers
+
+Since pointers point to memory addresses which are contiguous, it is therefore possible to increment a pointer to move to the next address. The pointer will step according to it's size, e.g. `int *` will be stepping 32 bits (4 bytes) each.
+
+Let's look at an example:
+
+```cpp
+int arr[] = { 1, 2, 3, 4 };
+int *p = arr;   // points to the first element in arr
+p++;            // now p is pointing at the 2nd element
+printf("p -> %d\n", *p);
+printf("p -> %d\n", *(++p)); // pointer now pointing to the 3rd
+```
+
+### Passing by Value vs. by Reference
+
+TBD
+
+
+### Character Pointers
+
+TBD
 
 ## Pointer to Pointer
 TBD

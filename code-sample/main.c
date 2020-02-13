@@ -37,9 +37,9 @@ int main()
     // => Null Pointer
     // int *py = 0;
     // int *pn = NULL;
-    // printf("%p -> %d\n", py, *py); // causes seg-fault!
-    int *pz;
-    printf("random *pz -> %d\n", *pz);
+    // printf("%p -> %d\n", py, *py); // causes seg-fault (always)!
+    // int *pz;
+    // printf("random *pz -> %d\n", *pz); // causes seg-fault too (sometimes)!
 
     // => Pointers and Arrays
     int arr[] = { 1, 2, 3 };
@@ -53,6 +53,12 @@ int main()
     // AFAIK (hit me up if you know one)
     printf("fake sum -> %d\n", sumArray(px, 3));
     printf("fake sum -> %d\n", sumArray(px, 300));
+
+    // => Incrementing Pointers
+    int *p = arr;   // points to the first element in arr
+    p++;            // now p is pointing at the 2nd element
+    printf("p -> %d\n", *p); // prints 2
+    printf("p -> %d\n", *(++p)); // prints 3
 
     return 0;
 }
