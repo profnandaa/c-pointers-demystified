@@ -160,10 +160,18 @@ Let's look at an example:
 ```cpp
 char s[] = { 'h', 'e', 'l', 'l', 'o', '\0' };
 char *ps = s;
-printf("%s, length = %ld\n", ps, strlen(ps));
+// notice that the length of the array will always be +1 the length of the
+// string, because of the \0
+printf("%s, str length = %ld, array length = %d\n", ps, strlen(ps), sizeof(sl));
 // a shorter way to initalize this:
 char *ps2 = "another hello"; // using double quotes to denote string
 printf("%s, length = %ld\n", ps2, strlen(ps2));
+```
+
+As we had mentioned earlier, there is no way to know you have reached the end of an array, unless you put a _sentinel_ value to mark the end. We use `\0` to mark the end of a string. For instance, this:
+```cpp
+char hackedStr[] = { 'g', 'o', '\0', 'o', 'd'};
+printf("%s, str length = %ld, array length = %ld\n", hackedStr, strlen(hackedStr), sizeof(hackedStr));
 ```
 
 ## Pointer to Pointer
@@ -205,7 +213,37 @@ A pointer is a _value_ too, only that that value is a reference. Let that sink.
 
 Therefore you can pass a pointer to a function _by value_ or _by reference_. Reference here will be a pointer to that pointer.
 
-TBC
+To illustrate this, let's look at the following example:
+```cpp
+void swap1(int *a, int *b)
+{
+    int *temp = a;
+    a = b;
+    b = temp;
+}
+
+int m = 30, n = 20;
+int *pm = &m, *pn = &n;
+swap1(pm, pn); // passed by value
+printf("m -> %d, n -> %d\n", *pm, *pn); // no swap done!
+```
+Basically, we just passed by value (a copy of the pointers) to the function, and therefore, our original pointers remained untouched.
+
+We have to pass by by refeference (a pointer to the pointer):
+```cpp
+void swap2(int **a, int **b)
+{
+    int *temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int m = 30, n = 20;
+int *pm = &m, *pn = &n;
+
+swap2(&pm, &pn);
+printf("m -> %d, n -> %d\n", *pm, *pn); // now swap done
+```
 
 ### Returning Pointers
 TBD

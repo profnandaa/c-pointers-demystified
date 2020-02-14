@@ -24,6 +24,20 @@ int sumArray2(int arr[], int sz)
     return sum;
 }
 
+void swap1(int *a, int *b)
+{
+    int *temp = a;
+    a = b;
+    b = temp;
+}
+
+void swap2(int **a, int **b)
+{
+    int *temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
 int main()
 {
     // => Declaring
@@ -64,9 +78,15 @@ int main()
     // => Character pointer
     char sl[] = { 'h', 'e', 'l', 'l', 'o', '\0' };
     char *ps = sl;
-    printf("%s, length = %ld\n", ps, strlen(ps));
+    // notice that the length of the array will always be +1 the length of the
+    // string, because of the \0
+    printf("%s, length = %ld, array length = %ld\n", ps, strlen(ps), sizeof(sl));
     char *ps2 = "another hello"; // using double quotes to denote string
-    printf("%s, length = %ld\n", ps2, strlen(ps2));
+    printf("%s, str length = %ld\n", ps2, strlen(ps2));
+    
+    // the sentinel is everything when it comes to string termination
+    char hackedStr[] = { 'g', 'o', '\0', 'o', 'd'};
+    printf("%s, str length = %ld, array length = %ld\n", hackedStr, strlen(hackedStr), sizeof(hackedStr));
 
     // => Pointer to Pointer
     int y = 10;
@@ -88,6 +108,15 @@ int main()
     int **ppArr = &p2;
     printf("1st element in arr: %d\n", **ppArr);
     printf("2nd element in arr: %d\n", *(*ppArr + 1)); // notice the brackets
+
+    // => Passing by Value vs. Reference
+    int m = 30, n = 20;
+    int *pm = &m, *pn = &n;
+    swap1(pm, pn); // passed by value
+    printf("m -> %d, n -> %d\n", *pm, *pn); // no swap done!
+    // we have to pass by reference
+    swap2(&pm, &pn);
+    printf("m -> %d, n -> %d\n", *pm, *pn); // now swap done
 
     return 0;
 }
