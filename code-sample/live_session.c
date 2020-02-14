@@ -1,11 +1,12 @@
 #include <stdio.h>
+#include <string.h>
 
 void trav(int *arr)
 {
     printf("after %p -> %d\n", arr, *arr++);
     printf("%p -> %d\n", arr, *arr);
     printf("%p -> %d\n", arr + 1, *(arr + 1));
-    printf("%p -> %d\n", arr + 1, *(arr + 4));
+    printf("%p -> %d\n", arr + 6, *(arr + 6));
     // arr + 1
 }
 
@@ -32,11 +33,16 @@ int main()
     trav(a);
     printf("first val -> %d\n", *a);
 
-    int* pa = a; // force the a to decay into a pointer (int*)
-    int** ppa = &pa;
-    trav2(&pa); // trav2(ppa);
-    printf("first val -> %d\n", *a);
-    printf("'first val' -> %d\n", *pa);
+    // int* pa = a; // force the a to decay into a pointer (int*)
+    // int** ppa = &pa;
+    // trav2(&pa); // trav2(ppa);
+    // printf("first val -> %d\n", *a);
+    // printf("'first val' -> %d\n", *pa);
+
+
+    // => strings
+    char *s = "ho\0me";
+    printf("%s -> size: %ld\n", s, strlen(s));
 
     return 0;
 }
